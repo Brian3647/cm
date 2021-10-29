@@ -1,0 +1,8 @@
+[package]
+name = "cm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+colored = "*"
+inquire = "0"
