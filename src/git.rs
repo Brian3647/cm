@@ -5,10 +5,7 @@ use crate::system;
 pub fn commit_msg<T: ToString>(m: T) {
 	system!(
 		"git commit -m \"{}\"",
-		m.to_string()
-			.replace('"', "\\\"")
-			.replace('`', "\\`")
-			.replace('\'', "\\'")
+		m.to_string().replace('"', "\\\"").replace('`', "\\`")
 	);
 }
 
