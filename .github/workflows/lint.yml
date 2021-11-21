@@ -1,0 +1,13 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ATiltedTree/setup-rust@v1
+      with:
+        rust-version: nightly
+    - uses: actions/checkout@v2
+    - run: cargo clippy --all-features --all-targets --release
