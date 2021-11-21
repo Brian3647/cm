@@ -23,9 +23,9 @@ pub fn __system(cmd: String) {
 	let out = Command::new(program)
 		.arg(firstarg)
 		.arg(cmd)
-		.stderr(Stdio::piped())
-		.stdout(Stdio::piped())
-		.stdin(Stdio::piped())
+		.stderr(Stdio::inherit())
+		.stdout(Stdio::inherit())
+		.stdin(Stdio::inherit())
 		.output()
 		.unwrap_or_else(|e| crate::err!("{}", e));
 
