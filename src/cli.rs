@@ -20,6 +20,7 @@ pub fn init() -> InquireResult<()> {
 		git::add('.')
 	};
 
+	println!();
 	git::commit_msg(&commit);
 
 	println!("\n{}", (&commit).blue());
