@@ -9,5 +9,6 @@ jobs:
     - uses: ATiltedTree/setup-rust@v1
       with:
         rust-version: nightly
+        components: clippy
     - uses: actions/checkout@v2
     - run: cargo clippy --all-features --all-targets --release
