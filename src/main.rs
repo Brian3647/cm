@@ -7,6 +7,7 @@ mod prompt;
 
 use inquire::error::InquireError;
 
+/// Simple macro for showing errors and exiting
 #[macro_export]
 macro_rules! err {
 	($($args:expr),*) => {{
@@ -17,6 +18,8 @@ macro_rules! err {
 }
 
 fn main() {
+	// Main function.
+	// Used as a handler of `cli::init`.
 	if let Err(e) = cli::init() {
 		match e {
 			InquireError::NotTTY => err!("Sorry, but currently tty is needed"),

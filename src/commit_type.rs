@@ -1,5 +1,7 @@
 use std::fmt::Display;
 
+/// A type for a commit.
+/// Used to differentiate commits and filter them easily.
 pub enum CommitType {
 	Feat,
 	Fix,
@@ -11,6 +13,7 @@ pub enum CommitType {
 	Chore
 }
 
+// Return a description of the commit type
 impl Display for CommitType {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
 		f.write_str(match self {
@@ -26,6 +29,7 @@ impl Display for CommitType {
 	}
 }
 
+// This is used in `cli.rs` for getting the commit type based on the full commit message
 impl From<String> for CommitType {
 	fn from(x: String) -> Self {
 		match x.split(' ').collect::<Vec<&str>>()[0] {
@@ -37,6 +41,7 @@ impl From<String> for CommitType {
 			"docs:" => Self::Docs,
 			"fix:" => Self::Fix,
 			"feat:" => Self::Feat,
+			// Unreachable.
 			_ => panic!("Unknown commit type {}", x)
 		}
 	}

@@ -1,6 +1,11 @@
 use std::process::Command;
 use std::process::Stdio;
 
+/// Executes a command
+///
+/// # Panics
+///
+/// It can't panic but it can exit the program if the command fails.
 #[macro_export]
 macro_rules! system {
 	($($args:expr),*) => {
@@ -8,6 +13,7 @@ macro_rules! system {
 	};
 }
 
+#[doc(hidden)]
 pub fn __system(cmd: String) {
 	let program;
 	let firstarg;

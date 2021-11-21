@@ -3,6 +3,7 @@ use inquire::Confirm;
 use inquire::Select;
 use inquire::Text;
 
+/// Creates an option used in `get_commit_type`
 macro_rules! option {
 	($base:expr,$ct:ident) => {{
 		use crate::commit_type::CommitType::$ct;
@@ -11,6 +12,7 @@ macro_rules! option {
 	}};
 }
 
+/// Simple prompt
 pub fn input(m: &str) -> InquireResult<String> {
 	Text::new(m)
 		.with_validator(&|x| {
@@ -23,6 +25,7 @@ pub fn input(m: &str) -> InquireResult<String> {
 		.prompt()
 }
 
+/// Optional input
 pub fn optinput(m: &str) -> InquireResult<Option<String>> {
 	match Text::new(m).prompt_skippable() {
 		Ok(Some(x)) => Ok({
@@ -33,11 +36,11 @@ pub fn optinput(m: &str) -> InquireResult<Option<String>> {
 			}
 		}),
 
-		Ok(None) => Ok(None),
-		Err(x) => Err(x)
+		other => other
 	}
 }
 
+/// Gets the commit type based on a selection
 pub fn get_commit_type() -> InquireResult<String> {
 	let options = vec![
 		option!("feat", Feat),
