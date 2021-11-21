@@ -13,10 +13,11 @@ impl Commit {
 	}
 
 	pub fn scope(&self) -> String {
-		match &self.scope {
-			Some(x) => format!("({})", x),
-			None => "".into()
-		}
+		self
+			.scope
+			.as_ref()
+			.map(|x| format!("({})", x))
+			.unwrap_or_else(|| "".into())
 	}
 
 	pub fn ctype(&self) -> String {

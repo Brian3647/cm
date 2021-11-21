@@ -23,7 +23,7 @@ fn main() {
 			InquireError::InvalidConfiguration(info) => err!("Invalid configuration. {}", info),
 			InquireError::OperationCanceled => err!("Cancelled."),
 			InquireError::OperationInterrupted => err!("Interrupted."),
-			_ => panic!("{}", e)
+			_ => err!("Unhandled error: {}", e)
 		}
 	};
 }

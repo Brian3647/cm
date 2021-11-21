@@ -3,11 +3,9 @@ use inquire::Confirm;
 use inquire::Select;
 use inquire::Text;
 
-use crate::commit_type::CommitType;
-
 macro_rules! option {
 	($base:expr,$ct:ident) => {{
-		use CommitType::$ct;
+		use crate::commit_type::CommitType::$ct;
 
 		format!("{}: {}", $base, $ct)
 	}};
@@ -52,7 +50,7 @@ pub fn get_commit_type() -> InquireResult<String> {
 		option!("chore", Chore),
 	];
 
-	Select::new("Select the type of commit: ", options).prompt()
+	Select::new("Select the type of commit:", options).prompt()
 }
 
 pub fn confirm(m: &str) -> InquireResult<bool> {

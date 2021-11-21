@@ -1,6 +1,5 @@
-use std::io;
-use std::io::Write;
 use std::process::Command;
+use std::process::Stdio;
 
 #[macro_export]
 macro_rules! system {
@@ -24,11 +23,11 @@ pub fn __system(cmd: String) {
 	let out = Command::new(program)
 		.arg(firstarg)
 		.arg(cmd)
+		.stderr(Stdio::piped())
+		.stdout(Stdio::piped())
+		.stdin(Stdio::piped())
 		.output()
 		.unwrap_or_else(|e| crate::err!("{}", e));
-
-	io::stdout().write_all(&out.stdout).unwrap();
-	io::stderr().write_all(&out.stderr).unwrap();
 
 	if !out.status.success() {
 		std::process::exit(out.status.code().unwrap_or(1))
