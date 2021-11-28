@@ -13,8 +13,8 @@ use crate::prompt::optinput;
 /// This function returns a result from the `inquire` crate.
 pub fn init() -> InquireResult<()> {
 	let ctype = CommitType::from(get_commit_type()?);
-	let scope = optinput("Add a scope to the commit (optional):")?;
 	let msg = input("Introduce a commit message:")?;
+	let scope = optinput("Add a scope to the commit (optional):")?;
 	let add = confirm("Do you want to add all files ('.') before committing?")?;
 	let commit = Commit::new(ctype, msg, scope).to_string();
 
