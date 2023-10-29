@@ -9,12 +9,14 @@ use std::process::Stdio;
 #[macro_export]
 macro_rules! system {
 	($($args:expr),*) => {
-		crate::helpers::__system(format!($($args),*))
+		$crate::helpers::system(format!($($args),*))
 	};
 }
 
 #[doc(hidden)]
-pub fn __system(cmd: String) {
+/// Executes a command
+/// Uses cmd on Windows and sh on Unix
+pub fn system(cmd: String) {
 	let program;
 	let firstarg;
 

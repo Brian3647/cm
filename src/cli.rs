@@ -4,10 +4,7 @@ use inquire::error::InquireResult;
 use crate::commit::Commit;
 use crate::commit_type::CommitType;
 use crate::git;
-use crate::prompt::confirm;
-use crate::prompt::get_commit_type;
-use crate::prompt::input;
-use crate::prompt::optinput;
+use crate::prompt::{confirm, get_commit_type, input, optinput};
 
 /// The main CLI entry point.
 /// This function returns a result from the `inquire` crate.

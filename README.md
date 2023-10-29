@@ -4,7 +4,7 @@ My personal tool for doing better commits
 
 ## Installation
 
-*Requires [cargo (rustlang)](https://www.rust-lang.org/)*
+_Requires [cargo (rustlang)](https://www.rust-lang.org/)_
 
 Simply run `cargo install --git https://github.com/Brian3647/cm.git` and use it with the `cm` command.
 

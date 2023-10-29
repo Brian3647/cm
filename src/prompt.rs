@@ -1,4 +1,5 @@
 use inquire::error::InquireResult;
+use inquire::validator::Validation;
 use inquire::Confirm;
 use inquire::Select;
 use inquire::Text;
@@ -15,12 +16,14 @@ macro_rules! option {
 /// Simple prompt
 pub fn input(m: &str) -> InquireResult<String> {
 	Text::new(m)
-		.with_validator(&|x| {
-			if x.trim().is_empty() {
-				Err("Input can't be empty.".into())
-			} else {
-				Ok(())
-			}
+		.with_validator(|x: &str| {
+			Ok({
+				if x.trim().is_empty() {
+					Validation::Invalid("Input cannot be empty".into())
+				} else {
+					Validation::Valid
+				}
+			})
 		})
 		.prompt()
 }
@@ -36,7 +39,7 @@ pub fn optinput(m: &str) -> InquireResult<Option<String>> {
 			}
 		}),
 
-		other => other
+		other => other,
 	}
 }
 
