@@ -60,5 +60,5 @@ pub fn get_commit_type() -> InquireResult<String> {
 }
 
 pub fn confirm(m: &str) -> InquireResult<bool> {
-	Confirm::new(m).prompt()
+	Confirm::new(m).with_default(true).prompt()
 }

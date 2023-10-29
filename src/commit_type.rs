@@ -10,7 +10,7 @@ pub enum CommitType {
 	Refactor,
 	Perf,
 	Test,
-	Chore
+	Chore,
 }
 
 // Return a description of the commit type
@@ -20,11 +20,11 @@ impl Display for CommitType {
 			CommitType::Feat => "A new feature",
 			CommitType::Fix => "A bug fix",
 			CommitType::Docs => "Documentation updates",
-			CommitType::Style => "Changes dat do not affect the meaning of the code",
+			CommitType::Style => "Changes that do not affect the meaning of the code",
 			CommitType::Refactor => "A code change that neither fixes a bug or adds a feature",
 			CommitType::Perf => "A code change that improves performance",
 			CommitType::Test => "Adding or updating tests",
-			CommitType::Chore => "Changes to the build process or auxiliary tools"
+			CommitType::Chore => "Changes to the build process or auxiliary tools",
 		})
 	}
 }
@@ -42,7 +42,7 @@ impl From<String> for CommitType {
 			"fix:" => Self::Fix,
 			"feat:" => Self::Feat,
 			// Unreachable.
-			_ => panic!("Unknown commit type {}", x)
+			_ => panic!("Unknown commit type {}", x),
 		}
 	}
 }
